@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
+using WebApp.Models.Services.Application;
+using WebApp.Models.ViewModels;
 
 namespace MvcMovie.Controllers
 {
@@ -10,7 +12,9 @@ namespace MvcMovie.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var productService = new ProductService();
+            List<ProductViewModel> products = productService.GetServices();
+            return View(products);
         }
 
         // 
