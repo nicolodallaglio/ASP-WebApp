@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Models;
+using WebApp.Models.Services.Application;
+using WebApp.Models.ViewModels;
 
 namespace WebApp.Controllers;
 
@@ -15,7 +17,9 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        var productService = new ProductService();
+            List<ProductViewModel> products = productService.GetServices();
+            return View(products);
     }
 
     public IActionResult Privacy()

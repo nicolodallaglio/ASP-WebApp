@@ -12,9 +12,8 @@ namespace MvcMovie.Controllers
 
         public IActionResult Index()
         {
-            var productService = new ProductService();
-            List<ProductViewModel> products = productService.GetServices();
-            return View(products);
+           
+            return View();
         }
 
         // 

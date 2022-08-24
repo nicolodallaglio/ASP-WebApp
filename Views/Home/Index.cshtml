@@ -1,4 +1,7 @@
-﻿@{
+﻿@model List<ProductViewModel>
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -7,24 +10,44 @@
     <p>ciao <a href="https://www.google.com/">link</a>.</p>
 </div>
 
-@for (int i=1;i<10;i++){
-<div class="row">
-    <div class="col-md-3 title">
-        <h2>Prodotto</h2>
+@foreach (ProductViewModel product in Model)
+{   
+<div class="container">   
+    <div class="row product">
+        <div class="col-md-3 title">
+        <h2>@product.Title</h2>
+
+        </div>
+        <div class="col-md-2 rating" title="@product.Rating">
+            @for(int i=1;i<=5;i++){
+
+            if(product.Rating >= i)
+            {
+                <i class="fa fa-star"></i>
+            } 
+            else if(product.Rating > i-1)
+            {
+                <i class="fa fa-star-half-alt"></i>
+            } 
+            else
+            {
+                <i class="fa-regular fa-star"></i>
+            }
+            }
+        </div>
+            
+
+        <div class="col-md-2 price">
+        @product.CurrentPrice@if(!product.CurrentPrice.Equals(product.FullPrice)){
+        <br><s>@product.FullPrice</s> 
+            }
+        </div>
+
+        <div class="col-md-2">
+        <a class="btn btn-outline-primary" asp-action="Index" asp-route-id="@product.Id" asp-controller="HelloWorld">More</a>  
+        </div>
     </div>
-    <div class="col-md-2 rating">
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star-half"></i>
-    </div>
-    <div class="col-md-2 price">
-        EUR 9,99<br /><s>EUR 23,99</s>  
-    </div>
-     <div class="col-md-2">
-        <a class="btn btn-outline-primary" asp-action="Index" asp-controller="HelloWorld">More</a>  
-    </div>
-</div>
-}
+</div>    
+} 
+
 
