@@ -5,22 +5,18 @@ using WebApp.Models.ViewModels;
 
 namespace MvcMovie.Controllers
 {
-    public class HelloWorldController : Controller
+    public class ProductController : Controller
     {
-        // 
-        // GET: /HelloWorld/
+    
 
-        public IActionResult Index()
+        public IActionResult Detail(int id)
         {
-           
-            return View();
+            var productService = new ProductService();
+            ProductDetailViewModel viewModel = productService.GetProduct(id);
+            return View(viewModel);
         }
 
-        // 
-        // GET: /HelloWorld/Welcome/ 
-
-        // GET: /HelloWorld/Welcome/ 
-        // Requires using System.Text.Encodings.Web;
+      
         public string Welcome(string name, int ID = 1)
             {
         return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");

@@ -1,0 +1,50 @@
+@model ProductDetailViewModel
+
+@{
+    ViewData["Title"] = "Product Detail";
+}
+
+<p>"popopo"</p>
+
+<section class="product-info">
+    <div class="row">
+        <div class="col-md-9">
+            <h1>@Model.Title</h1>
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+          <a href="#" class="btn btn-warning btn-lg btn-block buy-product">Aggiungi al carrello</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <p>@Model.Description</p>
+        </div>
+        <div class="col-md-3">
+            <aside>
+                <author>di @Model.Author</author>
+                <div class="rating" title="@Model.Rating">
+                     @for(int i=1;i<=5;i++){
+                    if(Model.Rating >= i)
+                    {
+                        <i class="fa fa-star"></i>
+                    } 
+                    else if(Model.Rating > i-1)
+                    {
+                        <i class="fa fa-star-half-alt"></i>
+                    } 
+                    else
+                    {
+                        <i class="fa-regular fa-star"></i>
+                    }
+                    }
+                </div>
+                <div class="price">
+                   @Model.CurrentPrice@if(!Model.CurrentPrice.Equals(Model.FullPrice)){
+                    <br><s>@Model.FullPrice</s> 
+                            }
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+

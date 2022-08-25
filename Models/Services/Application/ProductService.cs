@@ -3,11 +3,12 @@ using MyCourse.Models.Enums;
 using MyCourse.Models.ValueObjects;
 using WebApp.Models.ViewModels;
 
+
 namespace WebApp.Models.Services.Application
 {
     public class ProductService
     {
-        internal List<ProductViewModel> GetServices()
+        internal List<ProductViewModel> GetProducts()
         {
             List<ProductViewModel> productList = new();
         Random rand = new();
@@ -22,11 +23,30 @@ namespace WebApp.Models.Services.Application
                 FullPrice = new Money(Currency.EUR, rand.NextDouble() > 0.5 ? price : price - 1),
                 Author = "Nome cognome",
                 Rating = rand.Next(10, 50) / 10.0,
-                ImagePath = "/logo.svg"
+                //ImagePath = "/logo.svg"
             };
             productList.Add(product);
         }
         return productList;
+        }
+
+        public ProductDetailViewModel GetProduct(int id)
+        {
+            Random rand = new();
+            decimal price = Convert.ToDecimal(rand.NextDouble() * 10 + 10);
+            ProductDetailViewModel product = new()
+        {
+            Id = id,
+            Title = $"Prodotto {id}",
+            CurrentPrice = new Money(Currency.EUR, price),
+            FullPrice = new Money(Currency.EUR, rand.NextDouble() > 0.5 ? price : price - 1),
+            Author = "Nome cognome",
+            Rating = rand.Next(10, 50) / 10.0,
+            ImagePath = "",
+            Description = $"Descrizione {id}",
+        };
+
+        return product;
         }
     }
 }

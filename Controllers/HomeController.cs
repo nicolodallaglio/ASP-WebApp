@@ -18,7 +18,7 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         var productService = new ProductService();
-            List<ProductViewModel> products = productService.GetServices();
+            List<ProductViewModel> products = productService.GetProducts();
             return View(products);
     }
 
