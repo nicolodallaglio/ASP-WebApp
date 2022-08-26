@@ -7,11 +7,15 @@ namespace MvcMovie.Controllers
 {
     public class ProductController : Controller
     {
-    
+        private readonly ProductService productService;
+        
+        public ProductController(ProductService productService)
+        {
+            this.productService = productService;
+        }
 
         public IActionResult Detail(int id)
         {
-            var productService = new ProductService();
             ProductDetailViewModel viewModel = productService.GetProduct(id);
             return View(viewModel);
         }

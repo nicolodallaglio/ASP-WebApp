@@ -1,7 +1,10 @@
+using WebApp.Models.Services.Application;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<ProductService>();
 
 var app = builder.Build();
 
