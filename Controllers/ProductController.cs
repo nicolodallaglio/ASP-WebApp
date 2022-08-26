@@ -7,9 +7,9 @@ namespace MvcMovie.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly ProductService productService;
+        private readonly IProductService productService;
         
-        public ProductController(ProductService productService)
+        public ProductController(IProductService productService)
         {
             this.productService = productService;
         }

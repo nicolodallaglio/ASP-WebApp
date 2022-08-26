@@ -6,9 +6,9 @@ using WebApp.Models.ViewModels;
 
 namespace WebApp.Models.Services.Application
 {
-    public class ProductService
+    public class ProductService : IProductService
     {
-        internal List<ProductViewModel> GetProducts()
+        public List<ProductViewModel> GetProducts()
         {
             List<ProductViewModel> productList = new();
         Random rand = new();
@@ -18,10 +18,10 @@ namespace WebApp.Models.Services.Application
             ProductViewModel product = new()
             {
                 Id = i,
-                Title = $"Corso {i}",
+                Title = $"Prodotto {i}",
                 CurrentPrice = new Money(Currency.EUR, price),
                 FullPrice = new Money(Currency.EUR, rand.NextDouble() > 0.5 ? price : price - 1),
-                Author = "Nome cognome",
+                Author = "Azienda",
                 Rating = rand.Next(10, 50) / 10.0,
                 //ImagePath = "/logo.svg"
             };
@@ -40,7 +40,7 @@ namespace WebApp.Models.Services.Application
             Title = $"Prodotto {id}",
             CurrentPrice = new Money(Currency.EUR, price),
             FullPrice = new Money(Currency.EUR, rand.NextDouble() > 0.5 ? price : price - 1),
-            Author = "Nome cognome",
+            Author = "Azienda",
             Rating = rand.Next(10, 50) / 10.0,
             ImagePath = "",
             Description = $"Descrizione {id}",
