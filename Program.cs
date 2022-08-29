@@ -1,10 +1,12 @@
 using WebApp.Models.Services.Application;
+using WebApp.Models.Services.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<IProductService, ProductService>();
+builder.Services.AddTransient<IProductService, AdoNetProductService>();
+builder.Services.AddTransient<IDatabaseAccessor, SqliteDatabaseAccessor>();
 
 var app = builder.Build();
 
